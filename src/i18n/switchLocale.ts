@@ -5,6 +5,7 @@ import { get } from 'svelte/store';
 
 export const switchLocale = async (newLocale: Locales) => {
 	if (!newLocale || get(locale) === newLocale) return;
+	console.log('s');
 	// load new dictionary from server
 	await loadLocaleAsync(newLocale);
 	// select locale
