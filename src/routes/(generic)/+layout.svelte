@@ -6,7 +6,7 @@
 
 <b>Generic layout goes here</b>
 
-<select value={$locale} on:change={(e) => switchLocale(e.target?.value)}>
+<select value={$locale} on:change={(e) => switchLocale(e.currentTarget?.value)}>
 	{#each locales as option}
 		<option value={option}>
 			{option}

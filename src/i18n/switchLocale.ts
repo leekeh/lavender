@@ -1,17 +1,16 @@
 import { locale, setLocale } from '@i18n';
-import type { Locales } from '@i18n/i18n-types';
 import { loadLocaleAsync } from '@i18n/i18n-util.async';
 import { get } from 'svelte/store';
+import { isLocale } from './i18n-util';
 
-export const switchLocale = async (newLocale: Locales) => {
-	if (!newLocale || get(locale) === newLocale) return;
-	console.log('s');
+export const switchLocale = async (newLocale: string) => {
+	if (!isLocale(newLocale) || get(locale) === newLocale) return;
 	// load new dictionary from server
 	await loadLocaleAsync(newLocale);
 	// select locale
 	setLocale(newLocale);
 	// update `lang` attribute
-	document.querySelector('html')?.setAttribute('lang', newLocale);
-	//
-	window?.localStorage.setItem('preferredLocale', get(locale));
+	document?.querySelector('html')?.setAttribute('lang', newLocale);
+	//cache new locale preference
+	window?.localStorage.setItem('preferredLocale', newLocale);
 };
