@@ -8,7 +8,12 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			'@util/*': 'src/util/*',
+			'@i18n': 'src/i18n/i18n-svelte',
+			'@i18n/*': 'src/i18n/*'
+		}
 	}
 };
 
